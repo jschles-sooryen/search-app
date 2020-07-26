@@ -12,6 +12,7 @@ const styles = (theme) => ({
     fontSize: 'calc(10px + 2vmin)',
     color: theme.palette.primary.main,
     textAlign: 'center',
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
   },
   logoContainer: {
     backgroundColor: theme.palette.primary.main,
