@@ -42,7 +42,7 @@ const Post = (props) => {
 
   const onSaveClick = () => {
     const { id } = props.post;
-    onSave(id, title, body);
+    onSave({ id, title });
     setIsEditing(false);
     setTitle('');
   };

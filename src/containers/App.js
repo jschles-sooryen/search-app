@@ -14,19 +14,27 @@ class App extends Component {
     this.props.actions.fetchPosts();
   }
 
+  onSave = (post) => {
+    // Todo validation
+    this.props.actions.updatePost(post);
+  };
+
   render() {
     const { posts, loading } = this.props;
 
     const postContent = loading ? (
       <LoadingIndicator />
     ) : (
-      posts.map((post) => (
-        <Post 
-          key={post.id}
-          post={post}
-          onSave={() => {}}
-        />
-      ))
+      posts.map((post) => {
+        const { id } = post;
+        return (
+          <Post 
+            key={id}
+            post={post}
+            onSave={this.onSave}
+          />
+        );
+      })
     );
 
     return (

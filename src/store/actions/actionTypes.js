@@ -1,4 +1,5 @@
 export const FETCH_POSTS_INIT = 'FETCH_POSTS_INIT';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAIL = 'FETCH_POSTS_FAIL';
+export const UPDATE_POST = 'UPDATE_POST';
 export const LOADING = 'LOADING';
