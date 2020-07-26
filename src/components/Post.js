@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Button, OutlinedInput } from '@material-ui/core';
 
 const styles = (theme) => ({
   root: {
@@ -7,6 +8,7 @@ const styles = (theme) => ({
   },
   postTitle: {
     padding: 8,
+    fontSize: 16,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     color: '#fff',
@@ -19,9 +21,15 @@ const styles = (theme) => ({
   },
   editTitleInput: {
     width: '95%',
+    backgroundColor: '#fff',
+  },
+  editTitleInputRoot: {
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   postBody: {
     padding: 8,
+    fontSize: 16,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     backgroundColor: theme.palette.secondary.main,
@@ -53,13 +61,21 @@ const Post = (props) => {
 
   const titleContent = isEditing ? (
     <div className={classes.postTitleInner}>
-      <input className={classes.editTitleInput} type="text" value={title} onChange={handleChange} />
-      <button onClick={onSaveClick}>Save</button>
+      <OutlinedInput
+        className={classes.editTitleInput}
+        value={title} 
+        onChange={handleChange} 
+        variant="outlined"
+        classes={{
+          input: classes.editTitleInputRoot,
+        }}
+      />
+      <Button variant="contained" onClick={onSaveClick}>Save</Button>
     </div>
   ) : (
     <div className={classes.postTitleInner}>
       <div>{currentTitle}</div>
-      <button onClick={onEditClick}>Edit</button>
+      <Button variant="contained" onClick={onEditClick}>Edit</Button>
     </div>
   );
 

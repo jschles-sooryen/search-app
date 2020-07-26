@@ -5,7 +5,6 @@ import logo from '../logo.svg';
 const styles = (theme) => ({
   root: {
     backgroundColor: '#fff',
-    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -16,14 +15,18 @@ const styles = (theme) => ({
   },
   logoContainer: {
     backgroundColor: theme.palette.primary.main,
+    marginTop: 32,
     borderRadius: '100%',
   },
   logo: {
-    'height': '40vmin',
+    'height': '25vmin',
     'pointerEvents': 'none',
     '@media (prefers-reduced-motion: no-preference)': {
       animation: '$App-logo-spin infinite 20s linear',
     },
+  },
+  headerText: {
+    fontSize: 28,
   },
   '@keyframes App-logo-spin': {
     from: {
@@ -42,7 +45,7 @@ const Header = (props) => {
       <div className={classes.logoContainer}>
         <img src={logo} className={classes.logo} alt="logo" />
       </div>
-      <h1>React Search App</h1>
+      <h1 className={classes.headerText}>React Search App</h1>
     </header>
   )
 };
