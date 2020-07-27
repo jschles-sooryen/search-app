@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   onSave = (post) => {
-    // Todo validation
     this.props.actions.updatePost(post);
   };
 

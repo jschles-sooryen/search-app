@@ -34,11 +34,15 @@ const styles = (theme) => ({
     borderBottomRightRadius: 5,
     backgroundColor: theme.palette.secondary.main,
   },
+  error: {
+    color: 'red',
+  },
 });
 
 const Post = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState('');
+  const [error, setError] = useState('');
 
   const { classes, onSave, post } = props;
   const { title: currentTitle, body } = post;
@@ -50,9 +54,16 @@ const Post = (props) => {
 
   const onSaveClick = () => {
     const { id } = props.post;
-    onSave({ id, title });
-    setIsEditing(false);
-    setTitle('');
+    if (!title) {
+      setError('Error: Please enter a title.');
+    } else {
+      if (currentTitle !== title) {
+        onSave({ id, title });
+      }
+      setIsEditing(false);
+      setTitle('');
+      setError('');
+    }
   };
 
   const handleChange = (event) => {
@@ -81,6 +92,7 @@ const Post = (props) => {
 
   return (
     <div className={classes.root}>
+      {error && <p className={classes.error}>{error}</p>}
       <div className={classes.postTitle}>
         {titleContent}
       </div>
