@@ -7,7 +7,7 @@ import fetchPostsMockData from './config/mocks/fetchPostsMockData';
 
 jest.spyOn(global, 'fetch').mockImplementation(() =>
   Promise.resolve({
-    json: () => Promise.resolve(fetchPostsMockData)
+    json: () => Promise.resolve(JSON.parse(fetchPostsMockData))
   })
 );
 

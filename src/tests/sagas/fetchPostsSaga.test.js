@@ -1,4 +1,4 @@
-import { runSaga} from 'redux-saga';
+import { runSaga } from 'redux-saga';
 import { fetchPostsSaga } from '../../store/sagas/posts';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
 import { LOADING, FETCH_POSTS_SUCCESS } from '../../store/actions/actionTypes';
