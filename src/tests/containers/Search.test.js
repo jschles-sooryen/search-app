@@ -6,16 +6,12 @@ import TestProvider from '../../config/TestProvider';
 afterEach(cleanup);
 
 describe('<Search />', () => {
-  let search;
-  beforeAll(() => {
-    search = render(
+  it('Renders successfully without error', () => {
+    const search = render(
       <TestProvider>
         <Search />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(search.container).toBeInTheDocument();
   });
 });

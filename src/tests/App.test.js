@@ -6,16 +6,12 @@ import TestProvider from '../config/TestProvider';
 afterEach(cleanup);
 
 describe('<App />', () => {
-  let app;
-  beforeAll(() => {
-    app = render(
+  it('Renders successfully without error', () => {
+    const app = render(
       <TestProvider>
         <App />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(app.container).toBeInTheDocument();
   });
 });

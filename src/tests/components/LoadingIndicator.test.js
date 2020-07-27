@@ -6,16 +6,12 @@ import TestProvider from '../../config/TestProvider';
 afterEach(cleanup);
 
 describe('<LoadingIndicator />', () => {
-  let loadingIndicator;
-  beforeAll(() => {
-    loadingIndicator = render(
+  it('Renders successfully without error', () => {
+    const loadingIndicator = render(
       <TestProvider>
         <LoadingIndicator />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(loadingIndicator.container).toBeInTheDocument();
   });
 });

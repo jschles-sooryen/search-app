@@ -6,16 +6,12 @@ import TestProvider from '../../config/TestProvider';
 afterEach(cleanup);
 
 describe('<Header />', () => {
-  let header;
-  beforeAll(() => {
-    header = render(
+  it('Renders successfully without error', () => {
+    const header = render(
       <TestProvider>
         <Header />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(header.container).toBeInTheDocument();
   });
 });

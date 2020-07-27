@@ -6,16 +6,12 @@ import TestProvider from '../../config/TestProvider';
 afterEach(cleanup);
 
 describe('<PostList />', () => {
-  let postList;
-  beforeAll(() => {
-    postList = render(
+  it('Renders successfully without error', () => {
+    const postList = render(
       <TestProvider>
         <PostList />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(postList.container).toBeInTheDocument();
   });
 });

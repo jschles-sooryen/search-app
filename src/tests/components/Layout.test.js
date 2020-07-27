@@ -6,16 +6,12 @@ import TestProvider from '../../config/TestProvider';
 afterEach(cleanup);
 
 describe('<Layout />', () => {
-  let layout;
-  beforeAll(() => {
-    layout = render(
+  it('Renders successfully without error', () => {
+    const layout = render(
       <TestProvider>
         <Layout />
       </TestProvider>
     );
-  });
-
-  it('Renders successfully without error', () => {
     expect(layout.container).toBeInTheDocument();
   });
 });
