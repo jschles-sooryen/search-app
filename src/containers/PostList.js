@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Header from '../components/Header';
-import Layout from '../components/Layout';
 import Post from '../components/Post';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-import * as actions from '../store/actions/postActions';
+import * as postActions from '../store/actions/postActions';
 
-class App extends Component {
+class PostList extends Component {
   componentDidMount() {
     this.props.actions.fetchPosts();
   }
@@ -21,7 +19,7 @@ class App extends Component {
   render() {
     const { posts, loading } = this.props;
 
-    const postContent = loading ? (
+    const content = loading ? (
       <LoadingIndicator />
     ) : (
       posts.map((post) => {
@@ -38,10 +36,7 @@ class App extends Component {
 
     return (
       <div>
-        <Header />
-        <Layout>
-          {postContent}
-        </Layout>
+        {content}
       </div>
     );
   }
@@ -52,7 +47,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(actions, dispatch) };
+  return { actions: bindActionCreators(postActions, dispatch) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
