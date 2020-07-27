@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Layout from '../../components/Layout';
 import TestProvider from '../../config/TestProvider';
-
-afterEach(cleanup);
 
 describe('<Layout />', () => {
   it('Renders successfully without error', () => {

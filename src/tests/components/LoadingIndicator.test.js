@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import TestProvider from '../../config/TestProvider';
-
-afterEach(cleanup);
 
 describe('<LoadingIndicator />', () => {
   it('Renders successfully without error', () => {
