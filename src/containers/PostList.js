@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import Post from '../components/Post';
 import LoadingIndicator from '../components/LoadingIndicator';
 
 import * as postActions from '../store/actions/postActions';
+
+const styles = (theme) => ({
+  root: {
+    color: theme.palette.primary.main,
+  },
+  postInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  noResults: {
+    fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '32px 0',
+    fontSize: 20,
+  },
+});
 
 class PostList extends Component {
   componentDidMount() {
@@ -25,12 +45,13 @@ class PostList extends Component {
   };
 
   render() {
-    const { loading } = this.props;
+    const { classes, loading } = this.props;
     const posts = this.filteredPosts();
+    const resultAmount = posts.length;
 
     const content = loading ? (
       <LoadingIndicator />
-    ) : (
+    ) : posts.length ? (
       posts.map((post) => {
         const { id } = post;
         return (
@@ -41,10 +62,17 @@ class PostList extends Component {
           />
         );
       })
+    ) : (
+      <div className={classes.noResults}>
+        <p>No Posts Found.</p>
+      </div>
     );
 
     return (
-      <div>
+      <div className={classes.root}>
+        <div className={classes.postsInfo}>
+          <p>{resultAmount} Results</p>
+        </div>
         {content}
       </div>
     );
@@ -63,4 +91,4 @@ const mapDispatchToProps = (dispatch) => {
   return { actions: bindActionCreators(postActions, dispatch) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PostList));
