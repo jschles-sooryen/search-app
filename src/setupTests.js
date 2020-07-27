@@ -10,3 +10,7 @@ jest.spyOn(global, 'fetch').mockImplementation(() =>
     json: () => Promise.resolve(fetchPostsMockData)
   })
 );
+
+afterEach(() => {
+  global.fetch.mockRestore();
+});

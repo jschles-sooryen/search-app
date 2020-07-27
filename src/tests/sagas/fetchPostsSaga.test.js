@@ -16,7 +16,5 @@ describe('fetchDataSaga', () => {
       [{ type: FETCH_POSTS_SUCCESS, payload: JSON.parse(fetchPostsMockData)}], 
       [{ type: LOADING }],
     );
-
-    global.fetch.mockRestore();
   });
 });
