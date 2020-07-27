@@ -40,6 +40,9 @@ class Search extends Component {
           type="text"
           fullWidth
           onChange={this.handleChange}
+          inputProps={{
+            'data-testid': 'search-input',
+          }}
         />
       </div>
     );
