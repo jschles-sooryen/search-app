@@ -10,6 +10,6 @@ describe('<Header />', () => {
         <Header />
       </TestProvider>
     );
-    expect(header.container).toBeInTheDocument();
+    expect(header.container).toBeTruthy();
   });
 });

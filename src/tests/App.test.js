@@ -10,6 +10,6 @@ describe('<App />', () => {
         <App />
       </TestProvider>
     );
-    expect(app.container).toBeInTheDocument();
+    expect(app.container).toBeTruthy();
   });
 });

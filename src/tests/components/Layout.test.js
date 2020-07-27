@@ -10,6 +10,6 @@ describe('<Layout />', () => {
         <Layout />
       </TestProvider>
     );
-    expect(layout.container).toBeInTheDocument();
+    expect(layout.container).toBeTruthy();
   });
 });

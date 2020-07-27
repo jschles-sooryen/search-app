@@ -10,6 +10,6 @@ describe('<Post />', () => {
         <Post post={{ id: 1, title: 'Post Title', body: 'Post Body' }} />
       </TestProvider>
     );
-    expect(post.container).toBeInTheDocument();
+    expect(post.container).toBeTruthy();
   });
 });

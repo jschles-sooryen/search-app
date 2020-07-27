@@ -10,6 +10,6 @@ describe('<Search />', () => {
         <Search />
       </TestProvider>
     );
-    expect(search.container).toBeInTheDocument();
+    expect(search.container).toBeTruthy();
   });
 });

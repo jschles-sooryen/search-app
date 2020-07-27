@@ -10,6 +10,6 @@ describe('<PostList />', () => {
         <PostList />
       </TestProvider>
     );
-    expect(postList.container).toBeInTheDocument();
+    expect(postList.container).toBeTruthy();
   });
 });

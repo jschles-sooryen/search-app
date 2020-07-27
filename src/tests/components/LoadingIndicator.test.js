@@ -10,6 +10,6 @@ describe('<LoadingIndicator />', () => {
         <LoadingIndicator />
       </TestProvider>
     );
-    expect(loadingIndicator.container).toBeInTheDocument();
+    expect(loadingIndicator.container).toBeTruthy();
   });
 });
