@@ -5,12 +5,6 @@ import { LOADING, FETCH_POSTS_SUCCESS } from '../../store/actions/actionTypes';
 
 describe('fetchDataSaga', () => {
   it('Should call API and dispatch FETCH_POSTS_SUCCESS action with response data as payload', async () => {
-    jest.spyOn(global, 'fetch').mockImplementation(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(fetchPostsMockData)
-      })
-    );
-
     const dispatched = [];
 
     await runSaga({
