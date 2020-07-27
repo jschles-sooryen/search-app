@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { OutlinedInput } from '@material-ui/core';
 
-import * as postActions from '../store/actions/postActions';
+import * as searchActions from '../store/actions/searchActions';
 
 const styles = (theme) => ({
   root: {
@@ -26,7 +26,8 @@ const styles = (theme) => ({
 
 class Search extends Component {
   handleChange = (event) => {
-    // TODO: filter posts by search query
+    const query = event.target.value;
+    this.props.actions.search(query);
   };
 
   render() {
@@ -46,7 +47,7 @@ class Search extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(postActions, dispatch) };
+  return { actions: bindActionCreators(searchActions, dispatch) };
 };
 
 export default connect(null, mapDispatchToProps)(withStyles(styles)(Search));

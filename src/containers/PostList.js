@@ -16,8 +16,17 @@ class PostList extends Component {
     this.props.actions.updatePost(post);
   };
 
+  filteredPosts = () => {
+    const { posts, search } = this.props;
+    if (search) {
+      return posts.filter((post) => post.title.includes(search));
+    }
+    return posts;
+  };
+
   render() {
-    const { posts, loading } = this.props;
+    const { loading } = this.props;
+    const posts = this.filteredPosts();
 
     const content = loading ? (
       <LoadingIndicator />
@@ -43,7 +52,11 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts, loading: state.loading };
+  return { 
+    posts: state.posts, 
+    loading: state.loading,
+    search: state.search,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
