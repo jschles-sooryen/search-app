@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from  'react-redux';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -128,3 +129,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PostList));
+
+PostList.propTypes = {
+  posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  loading: PropTypes.bool.isRequired,
+  search: PropTypes.string,
+};

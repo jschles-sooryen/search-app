@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Button, OutlinedInput } from '@material-ui/core';
 
@@ -119,3 +120,8 @@ const Post = (props) => {
 };
 
 export default withStyles(styles)(Post);
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+  onSave: PropTypes.func.isRequired,
+};
