@@ -25,6 +25,20 @@ const styles = (theme) => ({
     margin: '32px 0',
     fontSize: 20,
   },
+  error: {
+    color: 'red',
+  },
+  buttonLink: {
+    background: 'none !important',
+    border: 'none',
+    padding: '0 !important',
+    color: 'red',
+    textDecoration: 'underline',
+    cursor: 'pointer',
+    fontSize: 20,
+    fontWeight: 'bold',
+    outline: 'none',
+  },
 });
 
 class PostList extends Component {
@@ -34,6 +48,10 @@ class PostList extends Component {
 
   onSave = (post) => {
     this.props.actions.updatePost(post);
+  };
+
+  onRetry = () => {
+    this.props.actions.fetchPosts();
   };
 
   filteredPosts = () => {
@@ -51,6 +69,21 @@ class PostList extends Component {
 
     const content = loading ? (
       <LoadingIndicator />
+    ) : posts.error ? (
+      <div className={classes.noResults}>
+        <p className={classes.error}>
+          Error: Unable to fetch posts.
+          &nbsp;
+          <button 
+            className={classes.buttonLink} 
+            onClick={this.onRetry}
+          >
+            Click Here
+          </button>
+          &nbsp;
+          to try again.
+        </p>
+      </div>
     ) : posts.length ? (
       posts.map((post) => {
         const { id } = post;
