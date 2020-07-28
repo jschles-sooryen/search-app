@@ -7,7 +7,7 @@ describe('<Post />', () => {
   it('Renders successfully without error', () => {
     const post = render(
       <TestProvider>
-        <Post post={{ id: 1, title: 'Post Title', body: 'Post Body' }} />
+        <Post post={{ id: 1, title: 'Post Title', body: 'Post Body' }} onSave={() => {}} />
       </TestProvider>
     );
     expect(post.container).toBeTruthy();
@@ -36,7 +36,7 @@ describe('<Post />', () => {
   it('Shows an error if user tries to update a post title with an empty space', () => {
     const { getByTestId } = render(
       <TestProvider>
-        <Post post={{ id: 1, title: 'Post Title', body: 'Post Body' }} />
+        <Post post={{ id: 1, title: 'Post Title', body: 'Post Body' }} onSave={() => {}} />
       </TestProvider>
     );
     const editButton = getByTestId('edit');
