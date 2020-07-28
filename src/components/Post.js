@@ -106,7 +106,7 @@ const Post = (props) => {
   );
 
   return (
-    <div className={classes.root} data-testid="post-">
+    <div className={classes.root} data-testid={`post-${post.id}`}>
       {error && <p className={classes.error} data-testid="post-error">{error}</p>}
       <div className={classes.postTitle}>
         {titleContent}
