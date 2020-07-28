@@ -60,7 +60,7 @@ class PostList extends Component {
     if (posts.error) {
       return posts;
     }
-    if (search) {
+    if (search.trim()) {
       return posts.filter((post) => post.title.includes(search));
     }
     return posts;
