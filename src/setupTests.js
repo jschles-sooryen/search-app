@@ -11,6 +11,6 @@ jest.spyOn(global, 'fetch').mockImplementation(() =>
   })
 );
 
-afterAll(() => {
-  global.fetch.mockRestore();
+beforeEach(() => {
+  global.fetch.mockClear();
 });
