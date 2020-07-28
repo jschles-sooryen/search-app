@@ -56,6 +56,9 @@ class PostList extends Component {
 
   filteredPosts = () => {
     const { posts, search } = this.props;
+    if (posts.error) {
+      return posts;
+    }
     if (search) {
       return posts.filter((post) => post.title.includes(search));
     }
@@ -71,7 +74,7 @@ class PostList extends Component {
       <LoadingIndicator />
     ) : posts.error ? (
       <div className={classes.noResults}>
-        <p className={classes.error}>
+        <p className={classes.error} data-testid="posts-error">
           Error: Unable to fetch posts.
           &nbsp;
           <button 
@@ -97,7 +100,7 @@ class PostList extends Component {
       })
     ) : (
       <div className={classes.noResults}>
-        <p>No Posts Found.</p>
+        <p data-testid="no-posts">No Posts Found.</p>
       </div>
     );
 

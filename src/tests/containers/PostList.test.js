@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 import PostList from '../../containers/PostList';
 import Search from '../../containers/Search';
 import TestProvider from '../../config/TestProvider';
@@ -37,5 +37,31 @@ describe('<PostList />', () => {
     });
     const resultsElement = getByText(/Results/i);
     expect(resultsElement.textContent).toMatch('1 Results');
+  });
+
+  it('Shows error upon fetch posts API failure', async () => {
+    global.fetch.mockImplementationOnce(() => Promise.reject());
+    const { getByTestId } = render(
+      <TestProvider>
+        <PostList />
+      </TestProvider>
+    );
+    const error = await waitForElement(() => getByTestId('posts-error'));
+    expect(error.textContent).toMatch('Error: Unable to fetch posts.');
+  });
+
+  it('Shows "No Posts Found." text when no posts are returned from the API or search query', async () => {
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        json: () => Promise.resolve([])
+      })
+    );
+    const { getByTestId } = render(
+      <TestProvider>
+        <PostList />
+      </TestProvider>
+    );
+    const noResults = await waitForElement(() => getByTestId('no-posts'));
+    expect(noResults.textContent).toMatch('No Posts Found.');
   });
 });
