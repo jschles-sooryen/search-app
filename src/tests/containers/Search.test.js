@@ -28,4 +28,22 @@ describe('<Search />', () => {
     const posts = await waitForElement(() => getAllByTestId('post-', { exact: false })); 
     expect(posts.length).toBe(1);
   });
+
+  it('Shows potential search results in an autocomplete dropdown when text is entered', async () => {
+    const { getByTestId, getAllByTestId } = render(
+      <TestProvider>
+        <Search />
+        <PostList />
+      </TestProvider>
+    );
+    const search = getByTestId('search-input');
+    fireEvent.change(search, {
+      target: { value: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit' },
+    });
+    fireEvent.focus(search);
+    console.log('test');
+    const options = await waitForElement(() => getAllByTestId('autocomplete-', { exact: false }));
+    console.log('options', options);
+    expect(options.length).toBe(1);
+  });
 });

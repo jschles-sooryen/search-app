@@ -81,7 +81,11 @@ class Search extends Component {
   renderAutocompleteOption = (item) => {
     const { classes } = this.props;
     return (
-      <div key={item.title} className={classes.autocompleteOption}>
+      <div 
+        key={item.title} 
+        className={classes.autocompleteOption}
+        data-testid={`autocomplete-${item.id}`}
+      >
         {item.title}
       </div>
     );
