@@ -54,7 +54,7 @@ const Post = (props) => {
 
   const onSaveClick = () => {
     const { id } = props.post;
-    if (!title) {
+    if (!title.trim()) {
       setError('Error: Please enter a title.');
     } else {
       if (currentTitle !== title) {
@@ -80,19 +80,34 @@ const Post = (props) => {
         classes={{
           input: classes.editTitleInputRoot,
         }}
+        inputProps={{
+          'data-testid': 'edit-input',
+        }}
       />
-      <Button variant="contained" onClick={onSaveClick}>Save</Button>
+      <Button 
+        variant="contained" 
+        onClick={onSaveClick}
+        data-testid="save"
+      >
+        Save
+      </Button>
     </div>
   ) : (
     <div className={classes.postTitleInner}>
       <div>{currentTitle}</div>
-      <Button variant="contained" onClick={onEditClick}>Edit</Button>
+      <Button 
+        variant="contained" 
+        onClick={onEditClick}
+        data-testid="edit"
+      >
+        Edit
+      </Button>
     </div>
   );
 
   return (
     <div className={classes.root} data-testid="post-">
-      {error && <p className={classes.error}>{error}</p>}
+      {error && <p className={classes.error} data-testid="post-error">{error}</p>}
       <div className={classes.postTitle}>
         {titleContent}
       </div>
