@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { shape, func, string, number } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Button, OutlinedInput } from '@material-ui/core';
 
 const styles = (theme) => ({
@@ -23,6 +24,9 @@ const styles = (theme) => ({
   editTitleInput: {
     width: '95%',
     backgroundColor: '#fff',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
   editTitleInputRoot: {
     paddingTop: 10,
@@ -34,6 +38,25 @@ const styles = (theme) => ({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     backgroundColor: theme.palette.secondary.main,
+    [theme.breakpoints.down('xs')]: {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  postButtonDesktop: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
+  mobileButtonContainer: {
+    padding: 8,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    border: `1px solid ${theme.palette.secondary.main}`,
+    borderTop: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   error: {
     color: 'red',
@@ -41,10 +64,11 @@ const styles = (theme) => ({
 });
 
 const Post = (props) => {
-  console.log('props', props);
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
+
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('xs'));
 
   const { classes, onSave, post } = props;
   const { title: currentTitle, body } = post;
@@ -87,7 +111,8 @@ const Post = (props) => {
         }}
       />
       <Button 
-        variant="contained" 
+        variant="contained"
+        className={classes.postButtonDesktop}
         onClick={onSaveClick}
         role="button"
         name="save"
@@ -100,6 +125,7 @@ const Post = (props) => {
       <div>{currentTitle}</div>
       <Button 
         variant="contained" 
+        className={classes.postButtonDesktop}
         onClick={onEditClick}
         role="button"
         name="edit"
@@ -108,6 +134,34 @@ const Post = (props) => {
       </Button>
     </div>
   );
+
+  const mobileButton = isEditing ? (
+    <Button 
+      variant="contained"
+      fullWidth
+      onClick={onSaveClick}
+      role="button"
+      name="save"
+    >
+      Save
+    </Button>
+  ) : (
+    <Button 
+      variant="contained"
+      fullWidth
+      onClick={onEditClick}
+      role="button"
+      name="edit"
+    >
+      Edit Title
+    </Button>
+  );
+
+  const mobileContent = isMobile ? (
+    <div className={classes.mobileButtonContainer}>
+      {mobileButton}
+    </div>
+  ) : null;
 
   return (
     <div className={classes.root} role="listitem">
@@ -118,6 +172,7 @@ const Post = (props) => {
       <div className={classes.postBody}>
         {body}
       </div>
+      {mobileContent}
     </div>
   );
 };

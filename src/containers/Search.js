@@ -19,6 +19,12 @@ const styles = (theme) => ({
     margin: '0 auto',
     width: '50%',
     fontWeight: 'bold',
+    [theme.breakpoints.down('md')]: {
+      width: '75%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '95%',
+    },
   },
   searchInput: {
     borderColor: theme.palette.primary.main,
