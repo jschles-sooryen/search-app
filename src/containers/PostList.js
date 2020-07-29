@@ -57,13 +57,10 @@ class PostList extends Component {
 
   filteredPosts = () => {
     const { posts, search } = this.props;
-    if (posts.error) {
+    if (posts.error || !search.trim()) {
       return posts;
     }
-    if (search.trim()) {
-      return posts.filter((post) => post.title.includes(search));
-    }
-    return posts;
+    return posts.filter((post) => post.title.includes(search));
   };
 
   render() {
