@@ -37,6 +37,7 @@ const styles = (theme) => ({
     overflow: 'auto',
     width: '100%',
     maxHeight: '200px',
+    zIndex: 5,
   },
   autocompleteOption: {
     width: '100%',
