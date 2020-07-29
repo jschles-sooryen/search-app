@@ -1,16 +1,16 @@
 import { put } from 'redux-saga/effects';
-import * as postActions from '../actions/postActions';
-import * as loadingActions from '../actions/loadingActions';
+import { fetchPostsSuccess, fetchPostsFail } from '../actions/postActions';
+import { loading } from '../actions/loadingActions';
 
 export function* fetchPostsSaga() {
-  yield put(loadingActions.loading());
+  yield put(loading());
   try {
     const response = yield fetch('http://jsonplaceholder.typicode.com/posts');
     const data = yield response.json();
-    yield put(loadingActions.loading());
-    yield put(postActions.fetchPostsSuccess(data));
+    yield put(loading());
+    yield put(fetchPostsSuccess(data));
   } catch (e) {
-    yield put(loadingActions.loading());
-    yield put(postActions.fetchPostsFail());
+    yield put(loading());
+    yield put(fetchPostsFail());
   }
 }

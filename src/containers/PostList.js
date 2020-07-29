@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Post from '../components/Post';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-import * as postActions from '../store/actions/postActions';
+import { updatePost, fetchPosts } from '../store/actions/postActions';
 
 const styles = (theme) => ({
   root: {
@@ -44,15 +44,15 @@ const styles = (theme) => ({
 
 class PostList extends Component {
   componentDidMount() {
-    this.props.actions.fetchPosts();
+    this.props.fetchPosts();
   }
 
   onSave = (post) => {
-    this.props.actions.updatePost(post);
+    this.props.updatePost(post);
   };
 
   onRetry = () => {
-    this.props.actions.fetchPosts();
+    this.props.fetchPosts();
   };
 
   filteredPosts = () => {
@@ -125,7 +125,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(postActions, dispatch) };
+  return { 
+    fetchPosts: bindActionCreators(fetchPosts, dispatch),
+    updatePost: bindActionCreators(updatePost, dispatch),
+  };
 };
 
 PostList.propTypes = {

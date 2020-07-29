@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { OutlinedInput } from '@material-ui/core';
 import Autocomplete from 'react-autocomplete';
 
-import * as searchActions from '../store/actions/searchActions';
+import { search as searchAction } from '../store/actions/searchActions';
 
 const styles = (theme) => ({
   root: {
@@ -60,7 +60,7 @@ class Search extends Component {
   handleChange = (event) => {
     // Autocomplete onSelect passes the value directly and not through an event
     const query = event.target ? event.target.value : event;
-    this.props.actions.search(query);
+    this.props.searchQuery(query);
   };
 
   getAutocompleteOptions = () => {
@@ -132,7 +132,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(searchActions, dispatch) };
+  return { searchQuery: bindActionCreators(searchAction, dispatch) };
 };
 
 Search.propTypes = {
