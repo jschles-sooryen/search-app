@@ -80,7 +80,7 @@ class Search extends Component {
       <div 
         key={item.title} 
         className={classes.autocompleteOption}
-        data-testid={`autocomplete-${item.id}`}
+        role="menuitem"
       >
         {item.title}
       </div>
@@ -103,7 +103,6 @@ class Search extends Component {
               inputRef={ref}
               fullWidth
               inputProps={{
-                'data-testid': 'search-input',
                 placeholder: 'Search Posts By Title:'
               }}
               {...props}

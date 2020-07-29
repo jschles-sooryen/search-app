@@ -25,13 +25,13 @@ describe('<PostList />', () => {
   });
 
   it('Shows number of results that match number of posts that meet search query conditions', () => {
-    const { getByTestId, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <TestProvider>
         <Search />
         <PostList />
       </TestProvider>
     );
-    const search = getByTestId('search-input');
+    const search = getByPlaceholderText('Search Posts By Title:');
     fireEvent.change(search, {
       target: { value: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit' },
     });
@@ -41,13 +41,13 @@ describe('<PostList />', () => {
 
   it('Shows error upon fetch posts API failure', async () => {
     global.fetch.mockImplementationOnce(() => Promise.reject());
-    const { getByTestId } = render(
+    const { getByText } = render(
       <TestProvider>
         <PostList />
       </TestProvider>
     );
-    const error = await waitForElement(() => getByTestId('posts-error'));
-    expect(error.textContent).toMatch('Error: Unable to fetch posts.');
+    const error = await waitForElement(() => getByText(/Error: Unable to fetch posts./i));
+    expect(error).toBeTruthy();
   });
 
   it('Shows "No Posts Found." text when no posts are returned from the API or search query', async () => {
@@ -56,12 +56,12 @@ describe('<PostList />', () => {
         json: () => Promise.resolve([])
       })
     );
-    const { getByTestId } = render(
+    const { getByText } = render(
       <TestProvider>
         <PostList />
       </TestProvider>
     );
-    const noResults = await waitForElement(() => getByTestId('no-posts'));
-    expect(noResults.textContent).toMatch('No Posts Found.');
+    const noResults = await waitForElement(() => getByText('No Posts Found.'));
+    expect(noResults).toBeTruthy();
   });
 });

@@ -83,13 +83,14 @@ const Post = (props) => {
           input: classes.editTitleInputRoot,
         }}
         inputProps={{
-          'data-testid': 'edit-input',
+          role: 'textbox',
         }}
       />
       <Button 
         variant="contained" 
         onClick={onSaveClick}
-        data-testid="save"
+        role="button"
+        name="save"
       >
         Save
       </Button>
@@ -100,7 +101,8 @@ const Post = (props) => {
       <Button 
         variant="contained" 
         onClick={onEditClick}
-        data-testid="edit"
+        role="button"
+        name="edit"
       >
         Edit
       </Button>
@@ -108,8 +110,8 @@ const Post = (props) => {
   );
 
   return (
-    <div className={classes.root} data-testid={`post-${post.id}`}>
-      {error && <p className={classes.error} data-testid="post-error">{error}</p>}
+    <div className={classes.root} role="listitem">
+      {error && <p className={classes.error}>{error}</p>}
       <div className={classes.postTitle}>
         {titleContent}
       </div>

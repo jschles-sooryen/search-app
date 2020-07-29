@@ -72,7 +72,7 @@ class PostList extends Component {
       <LoadingIndicator />
     ) : posts.error ? (
       <div className={classes.noResults}>
-        <p className={classes.error} data-testid="posts-error">
+        <p className={classes.error}>
           Error: Unable to fetch posts.
           &nbsp;
           <button 
@@ -98,7 +98,7 @@ class PostList extends Component {
       })
     ) : (
       <div className={classes.noResults}>
-        <p data-testid="no-posts">No Posts Found.</p>
+        <p>No Posts Found.</p>
       </div>
     );
 

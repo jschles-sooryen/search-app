@@ -15,33 +15,33 @@ describe('<Search />', () => {
   });
 
   it('Filters posts shown on the screen when a search query is entered', async () => {
-    const { getByTestId, getAllByTestId } = render(
+    const { getByPlaceholderText, getAllByRole } = render(
       <TestProvider>
         <Search />
         <PostList />
       </TestProvider>
     );
-    const search = getByTestId('search-input');
+    const search = getByPlaceholderText('Search Posts By Title:');
     fireEvent.change(search, {
       target: { value: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit' },
     });
-    const posts = await waitForElement(() => getAllByTestId('post-', { exact: false })); 
+    const posts = await waitForElement(() => getAllByRole('listitem')); 
     expect(posts.length).toBe(1);
   });
 
   it('Shows potential search results in an autocomplete dropdown when text is entered', async () => {
-    const { getByTestId, getAllByTestId } = render(
+    const { getByPlaceholderText, getAllByRole } = render(
       <TestProvider>
         <Search />
         <PostList />
       </TestProvider>
     );
-    const search = getByTestId('search-input');
+    const search = getByPlaceholderText('Search Posts By Title:');
     fireEvent.change(search, {
       target: { value: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit' },
     });
     fireEvent.focus(search);
-    const options = await waitForElement(() => getAllByTestId('autocomplete-', { exact: false }));
+    const options = await waitForElement(() => getAllByRole('menuitem'));
     expect(options.length).toBe(1);
   });
 });
