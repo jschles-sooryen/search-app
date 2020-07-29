@@ -20,7 +20,7 @@ const styles = (theme) => ({
     borderRadius: '100%',
   },
   logo: {
-    'height': '25vmin',
+    'height': '100px',
     'pointerEvents': 'none',
     '@media (prefers-reduced-motion: no-preference)': {
       animation: '$App-logo-spin infinite 20s linear',
