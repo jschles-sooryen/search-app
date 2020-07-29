@@ -41,9 +41,7 @@ describe('<Search />', () => {
       target: { value: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit' },
     });
     fireEvent.focus(search);
-    console.log('test');
     const options = await waitForElement(() => getAllByTestId('autocomplete-', { exact: false }));
-    console.log('options', options);
     expect(options.length).toBe(1);
   });
 });
