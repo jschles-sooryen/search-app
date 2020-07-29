@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { shape, func, string, number } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Button, OutlinedInput } from '@material-ui/core';
 
@@ -41,6 +41,7 @@ const styles = (theme) => ({
 });
 
 const Post = (props) => {
+  console.log('props', props);
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
@@ -119,9 +120,14 @@ const Post = (props) => {
   );
 };
 
-export default withStyles(styles)(Post);
-
 Post.propTypes = {
-  post: PropTypes.object.isRequired,
-  onSave: PropTypes.func.isRequired,
+  post: shape({
+    id: number,
+    userId: number,
+    title: string,
+    body: string,
+  }).isRequired,
+  onSave: func.isRequired,
 };
+
+export default withStyles(styles)(Post);

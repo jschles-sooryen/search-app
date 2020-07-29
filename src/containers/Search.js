@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { shape, bool, string, array, oneOfType } from 'prop-types';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -135,9 +135,14 @@ const mapDispatchToProps = (dispatch) => {
   return { actions: bindActionCreators(searchActions, dispatch) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Search));
-
 Search.propTypes = {
-  posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  search: PropTypes.string, 
+  posts: oneOfType([
+    shape({
+      error: bool.isRequired,
+    }), 
+    array,
+  ]).isRequired,
+  search: string,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Search));
