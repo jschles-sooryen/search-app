@@ -20,10 +20,6 @@ const styles = (theme) => ({
     width: '50%',
     fontWeight: 'bold',
   },
-  searchTitle: {
-    flexBasis: '20%',
-    width: '20%',
-  },
   searchInput: {
     borderColor: theme.palette.primary.main,
     outline: 'none',
@@ -97,7 +93,6 @@ class Search extends Component {
 
     return (
       <div className={classes.root}>
-        <p className={classes.searchTitle}>Search Posts:</p>
         <Autocomplete 
           items={autocompleteOptions}
           getItemValue={(item) => item.title}
@@ -109,6 +104,7 @@ class Search extends Component {
               fullWidth
               inputProps={{
                 'data-testid': 'search-input',
+                placeholder: 'Search Posts By Title:'
               }}
               {...props}
             />
