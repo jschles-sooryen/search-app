@@ -23,7 +23,7 @@ const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '32px 0',
+    margin: `${theme.spacing(4)}px 0`,
     fontSize: 20,
   },
   error: {
