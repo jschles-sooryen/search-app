@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { shape, func, string, number } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -71,7 +71,7 @@ const Post = (props) => {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('xs'));
 
   const { classes, onSave, post } = props;
-  const { title: currentTitle, body } = post;
+  const { title: currentTitle, body, id } = post;
 
   const onEditClick = () => {
     setIsEditing(true);
@@ -79,7 +79,6 @@ const Post = (props) => {
   };
 
   const onSaveClick = () => {
-    const { id } = props.post;
     if (!title.trim()) {
       setError('Error: Please enter a title.');
     } else {
@@ -187,4 +186,4 @@ Post.propTypes = {
   onSave: func.isRequired,
 };
 
-export default withStyles(styles)(Post);
+export default withStyles(styles)(memo(Post));
