@@ -14,8 +14,8 @@ const styles = (theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     color: theme.palette.primary.main,
-    marginTop: 16,
-    marginBottom: 32,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(4),
     margin: '0 auto',
     width: '50%',
     fontWeight: 'bold',
@@ -30,7 +30,6 @@ const styles = (theme) => ({
     borderColor: theme.palette.primary.main,
     outline: 'none',
     borderRadius: 5,
-    fontSize: 16,
   },
   autocompleteMenu: {
     borderRadius: '3px',

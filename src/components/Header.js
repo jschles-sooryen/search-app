@@ -16,7 +16,7 @@ const styles = (theme) => ({
   },
   logoContainer: {
     backgroundColor: theme.palette.primary.main,
-    marginTop: 32,
+    marginTop: theme.spacing(4),
     borderRadius: '100%',
   },
   logo: {

@@ -1,11 +1,11 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {
     margin: '0 auto',
     maxWidth: 1440,
-    padding: 16,
+    padding: theme.spacing(2),
   }
 });
 

@@ -9,8 +9,10 @@ const theme = createMuiTheme({
       main: '#e5e7eb',
     },
   },
+  spacing: 8,
   typography: {
     fontFamily: '"Roboto", sans-serif',
+    fontSize: 16,
   },
 });
 

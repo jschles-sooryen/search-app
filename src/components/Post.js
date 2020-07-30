@@ -6,11 +6,10 @@ import { Button, OutlinedInput } from '@material-ui/core';
 
 const styles = (theme) => ({
   root: {
-    marginBottom: 32,
+    marginBottom: theme.spacing(4),
   },
   postTitle: {
-    padding: 8,
-    fontSize: 16,
+    padding: theme.spacing(1),
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     color: '#fff',
@@ -33,8 +32,7 @@ const styles = (theme) => ({
     paddingBottom: 10,
   },
   postBody: {
-    padding: 8,
-    fontSize: 16,
+    padding: theme.spacing(1),
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     backgroundColor: theme.palette.secondary.main,
@@ -49,7 +47,7 @@ const styles = (theme) => ({
     },
   },
   mobileButtonContainer: {
-    padding: 8,
+    padding: theme.spacing(1),
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     border: `1px solid ${theme.palette.secondary.main}`,
